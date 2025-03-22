@@ -6,9 +6,7 @@ Object.entries(localStorage).forEach(([key, value]) => {
       'color: #bada55; font-size: 20px',
     );
   } else if (key === 'VOILA.AUTH_TOKENS') {
-    const formatedValue = value
-      .replaceAll('{"accessToken":"', '')
-      .split('","refreshToken":"')[0];
+    const formatedValue = value.replaceAll('{"accessToken":"', '').split('","refreshToken":"')[0];
 
     console.log(
       `%cAccess Token: %c${formatedValue}`,

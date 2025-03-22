@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { jwtDecode } from 'jwt-decode';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../auth/[...nextauth]/route';
 import getData from './getData';
 import { google } from 'googleapis';
 import { CatchError } from '@/types/utility';
+import { authOptions } from '@/lib/authOptions';
 
 export const POST = async (req: NextRequest) => {
   const session = await getServerSession(authOptions);
@@ -60,12 +60,8 @@ export const POST = async (req: NextRequest) => {
 
     console.error('Error creating event:', error.message);
 
-    if (error.message === 'The requested identifier already exists.')
-      return NextResponse.json({}, { status: 200 });
+    if (error.message === 'The requested identifier already exists.') return NextResponse.json({}, { status: 200 });
 
-    return NextResponse.json(
-      { error: 'Failed to create event' },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: 'Failed to create event' }, { status: 500 });
   }
 };

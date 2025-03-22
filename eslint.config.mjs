@@ -14,8 +14,8 @@ const eslintConfig = [
     "next/core-web-vitals",
     "airbnb-base",
     "airbnb-typescript/base",
-    "prettier",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "prettier"
   ),
   {
     rules: {

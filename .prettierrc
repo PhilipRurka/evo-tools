@@ -1,0 +1,10 @@
+{
+  "singleQuote": true,
+  "tabWidth": 2,
+  "printWidth": 120,
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "formatOnSave": true,
+  "tailwindFunctions": ["classNames", "cn", "className"],
+  "plugins": ["prettier-plugin-tailwindcss"]
+}

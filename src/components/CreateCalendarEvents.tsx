@@ -43,10 +43,7 @@ export default function CreateCalendarEvents() {
         onChange={(event) => setGroupId(event.target.value)}
         className="mt-2 block rounded border p-2"
       />
-      <button
-        onClick={createEvent}
-        className="mt-4 rounded bg-blue-500 px-4 py-2 text-white"
-      >
+      <button onClick={createEvent} className="mt-4 rounded bg-blue-500 px-4 py-2 text-white">
         Create events
       </button>
     </div>

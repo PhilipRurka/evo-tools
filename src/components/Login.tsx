@@ -8,10 +8,7 @@ export default function LoginButton() {
   return session ? (
     <div>
       <p className="mt-4">Welcome, {session.user?.name}!</p>
-      <button
-        className="mt-4 rounded bg-orange-500 px-4 py-2 text-white"
-        onClick={() => signOut()}
-      >
+      <button className="mt-4 rounded bg-orange-500 px-4 py-2 text-white" onClick={() => signOut()}>
         Sign out
       </button>
     </div>

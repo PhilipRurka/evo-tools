@@ -14,34 +14,31 @@ type GetDate = (param: { accessToken: string; groupId: string }) => Promise<
 
 const getData: GetDate = async ({ accessToken, groupId }) => {
   try {
-    const memberResponse = await fetch(
-      `https://api.evolia.com/v1/groups/${groupId}/events/grouped/get`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
-          'x-evo-platform': 'EVOLIA',
-          'x-evo-timezone': 'America/Toronto',
-          'x-evo-version': '9.10.3',
-        },
-        body: JSON.stringify({
-          forMemberIds: ['6716723a2549d8c8451ef067'],
-          locale: 'en',
-          fromDate: Date.now(),
-          toDate: Date.now() + 14 * 24 * 60 * 60 * 1000, // 7 days from now,
-          groupBy: 'member',
-          sortBy: 'name',
-          includeClockingDescriptions: true,
-          includeInterested: true,
-          includeNonWorkingMembers: true,
-          simplified: true,
-          withCoworkers: false,
-          withInvites: true,
-          withStats: false,
-        }),
+    const memberResponse = await fetch(`https://api.evolia.com/v1/groups/${groupId}/events/grouped/get`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+        'x-evo-platform': 'EVOLIA',
+        'x-evo-timezone': 'America/Toronto',
+        'x-evo-version': '9.10.3',
       },
-    );
+      body: JSON.stringify({
+        forMemberIds: ['6716723a2549d8c8451ef067'],
+        locale: 'en',
+        fromDate: Date.now(),
+        toDate: Date.now() + 14 * 24 * 60 * 60 * 1000,
+        groupBy: 'member',
+        sortBy: 'name',
+        includeClockingDescriptions: true,
+        includeInterested: true,
+        includeNonWorkingMembers: true,
+        simplified: true,
+        withCoworkers: false,
+        withInvites: true,
+        withStats: false,
+      }),
+    });
 
     const memberRes = (await memberResponse.json()) as MembersRoot;
 
