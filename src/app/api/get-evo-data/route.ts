@@ -19,8 +19,6 @@ export const POST = async (req: NextRequest) => {
 
   const data = await getData({ accessToken, groupId });
 
-  console.log(JSON.stringify(data, null, 2));
-
   try {
     const auth = new google.auth.OAuth2();
     auth.setCredentials({ access_token: session.accessToken });

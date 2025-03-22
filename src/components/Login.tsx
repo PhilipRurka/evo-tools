@@ -13,6 +13,8 @@ export default function LoginButton() {
       </button>
     </div>
   ) : (
-    <button onClick={() => signIn('google')}>Sign in with Google</button>
+    <button className="mt-4 rounded bg-orange-500 px-4 py-2 text-white" onClick={() => signIn('google')}>
+      Sign in with Google
+    </button>
   );
 }
