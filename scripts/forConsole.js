@@ -6,7 +6,13 @@ Object.entries(localStorage).forEach(([key, value]) => {
       'color: #bada55; font-size: 20px',
     );
   } else if (key === 'VOILA.AUTH_TOKENS') {
-    const formatedValue = value.replaceAll('{"accessToken":"', '').split('","refreshToken":"')[0];
+    let formatedValue;
+
+    if (value.startsWith('{"accessToken')) {
+      formatedValue = value.replaceAll('{"accessToken":"', '').split('","refreshToken":"')[0];
+    } else {
+      formatedValue = value.replaceAll('{"refreshToken":"', '').split('","accessToken":"')[1].replaceAll('"}', '');
+    }
 
     console.log(
       `%cAccess Token: %c${formatedValue}`,

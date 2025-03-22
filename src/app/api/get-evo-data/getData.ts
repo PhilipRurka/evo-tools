@@ -27,7 +27,7 @@ const getData: GetDate = async ({ accessToken, groupId }) => {
         forMemberIds: ['6716723a2549d8c8451ef067'],
         locale: 'en',
         fromDate: Date.now(),
-        toDate: Date.now() + 14 * 24 * 60 * 60 * 1000,
+        toDate: Date.now() + 30 * 24 * 60 * 60 * 1000,
         groupBy: 'member',
         sortBy: 'name',
         includeClockingDescriptions: true,
@@ -42,7 +42,9 @@ const getData: GetDate = async ({ accessToken, groupId }) => {
 
     const memberRes = (await memberResponse.json()) as MembersRoot;
 
-    const shifts = memberRes.struct[0].children;
+    const [correctShifts] = memberRes.struct.filter((item) => item._id);
+
+    const shifts = correctShifts.children;
     const locations: GenericObject = {};
     const subLocations: { [key: string]: string } = {};
     const skills: { [key: string]: string } = {};

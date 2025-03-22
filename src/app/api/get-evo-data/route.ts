@@ -60,6 +60,6 @@ export const POST = async (req: NextRequest) => {
 
     if (error.message === 'The requested identifier already exists.') return NextResponse.json({}, { status: 200 });
 
-    return NextResponse.json({ error: 'Failed to create event' }, { status: 500 });
+    return NextResponse.json({ error: `Failed to create event: error.message` }, { status: 500 });
   }
 };
