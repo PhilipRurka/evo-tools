@@ -51,15 +51,23 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, account }) {
       if (account) {
         return {
+          ...token,
           accessToken: account.access_token,
           accessTokenExpires: Date.now() + ((account.expires_in as number) || 3600) * 1000,
-          refreshToken: account.refresh_token,
+          refreshToken: account.refresh_token ?? token.refreshToken,
         };
       }
 
       if (Date.now() < (token.accessTokenExpires as number)) {
         return token;
       }
+
+      if (Date.now() < (token.accessTokenExpires as number)) {
+        console.log('ACCESS TOKEN STILL VALID');
+        return token;
+      }
+
+      console.log('ACCESS TOKEN EXPIRED, REFRESHING');
 
       return await refreshAccessToken(token);
     },
